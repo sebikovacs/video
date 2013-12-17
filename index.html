@@ -4,127 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Video test</title>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script>
-	$(document).ready(function () {
-		var vid = $('#demo')[0];
-		var arr = [];
-
-		window.increasePlaybackRate = function () {
-			vid.playbackRate = vid.playbackRate + 0.1;
-		}
-
-		window.decreasePlaybackRate = function () {
-			vid.playbackRate = vid.playbackRate - 0.1;
-		}
-
-		//start video at this certain point and play it until the end time
-		//loop through it as many times as specified
-		
-		window.play = function () {
-			vid.play();
-		}
-
-		window.setLoopStart = function () {
-			var start = parseInt($('#start').val()),
-				end = parseInt($('#end').val()),
-				loop = parseInt($('#loop').val());
-
-			vid.currentTime = start;
-
-			$(vid).on('timeupdate', function (e) {
-				var time = Math.floor(this.currentTime);
-				if (time == end) {
-					vid.pause();
-
-					while(loop) {
-						vid.currentTime = start;
-						vid.play();
-						loop = loop - 1;
-					}
-				}
-			})
-		}
-		window.setStart = function () {
-			var obj = {
-				start: parseInt($('#start').val())
-			}
-			arr.push(obj);
-			$('#start').attr('disabled', true);
-		}
-
-		window.setEnd = function () {
-			arr[arr.length-1].end = parseInt($('#start').val());
-			
-		}
-
-		$(vid).on('seeking', function () {
-			var start = $('#start'),
-				end = $('#end'),
-				loop = $('#loop'),
-				time = Math.floor(this.currentTime);
-			
-			start.val(time);
-		})
-		$(vid).on('loadedmetadata', function () {
-			
-			//get mouse offset on screen when mousedown
-			//get mouse offset when mouseup
-		})
-
-		var isDown = false;
-		var updateRangePosition = function (e) {
-			var el = $('.cursor');
-			var range = $('.range');
-			var pixelCount = vid.duration / $('.range').width();
-
-			var left = (e.pageX - range.offset().left) - el.width();
-
-			if ((isDown && left >= 0) && (isDown && left <= 400)) {
-				var time = Math.floor(left * pixelCount);
-				vid.currentTime = time;
-
-				el.css('left', left + 'px');
-			}
-		};
-		$(document).on('mousedown', '.cursor-inner', function () { isDown = true;})
-			.on('mouseup', '.cursor-inner', function () { isDown = false;})
-			.on('mousemove','.cursor-inner', updateRangePosition)
-			.on('mouseup', function () { isDown = false;})
-			.on('mousemove', updateRangePosition);
-
-
-
-
-
-
-	});
-	</script>
-	<style>
-		.range {
-			width: 400px;
-			border: 1px solid red;
-			height: 20px;
-			position: relative;
-			margin: 20px 0 0 20px;
-		}
-		.cursor {
-			width: 1px;
-			height: 1px;
-			background: green;
-			position: absolute;
-			left: 0;
-			top: 0px;
-		}
-		.cursor-inner {
-			width: 15px;
-			height: 15px;
-			border-radius: 7px 0 0  7px;
-			background: green;
-			top: -7px;
-			left: -15px;
-			position: absolute;
-		}
-	</style>
+	<script src="js/app.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 	<video id="demo" src="salsa.mp4" controls defaultMuted></video>
@@ -153,7 +34,8 @@
 		<button onclick="setLoop()">Set</button>
 	</div>
 	<div class="range">
-		<div class="cursor"><div class="cursor-inner"></div></div>
+		<div class="cursor-left"><div class="cursor-inner-left"></div></div>
+		<div class="cursor-right"><div class="cursor-inner-right"></div></div>
 	</div>
 </body>
 </html>

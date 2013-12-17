@@ -1,0 +1,41 @@
+.range {
+	width: 400px;
+	border: 1px solid red;
+	height: 20px;
+	position: relative;
+	margin: 20px 0 0 20px;
+}
+.cursor-left {
+	width: 1px;
+	height: 1px;
+	background: green;
+	position: absolute;
+	left: 0;
+	top: 0px;
+}
+.cursor-right {
+	width: 1px;
+	height: 1px;
+	background: green;
+	position: absolute;
+	left: 1px;
+	top: 0px;
+}
+.cursor-inner-left {
+	width: 15px;
+	height: 15px;
+	border-radius: 7px 0 0  7px;
+	background: green;
+	top: -7px;
+	left: -15px;
+	position: absolute;
+}
+.cursor-inner-right {
+	width: 15px;
+	height: 15px;
+	border-radius:  0 7px 7px 0;
+	background: green;
+	top: -7px;
+	right: -15px;
+	position: absolute;
+}
