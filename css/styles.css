@@ -1,11 +1,30 @@
 body {
-	background: url(../img/brushed.png);
+/* 	background: url(../img/brushed.png); */
 }
 
 .content {
 	max-width: 1280px;
 	margin: 0 auto;
 	padding: 50px 0 0;
+}
+
+.input-wrap {
+	text-align: center;
+	margin: 0 auto;
+	width: 60%;
+	padding: 20px;
+}
+
+.input-wrap i {
+	display: inline-block;
+	margin: 0 15px 0 0;
+}
+
+input {
+	display: inline-block;
+	width: 40px;
+	border: 1px solid #ccc;
+	padding: 0 0 0 3px;
 }
 
 .video {

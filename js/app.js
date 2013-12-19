@@ -64,18 +64,61 @@ $(document).ready(function () {
 	});
 
 
-	loop.on('keypress', function () {
-		var $this = this;
-		setTimeout(function() {
-			bundle.loop = parseInt($($this).val());
+	loop.on('keypress', function (e) {
+		e.preventDefault();
+	}).on('mousewheel', function (e) {
+		var val = parseInt($(this).val()),
+			$this = $(this);
 
-		}, 100);
+		if (!val) {
+			$this.val(1);
+			val = 1;
+		}
+		
+
+		if (e.deltaY > 0) {
+			$this.val(val + 1);
+			setTimeout(function() {
+				bundle.loop = parseInt($this.val());
+			}, 100);
+		} else if (e.deltaY < 0 && val > 1) {
+			$this.val(val - 1);
+			setTimeout(function() {
+				bundle.loop = parseInt($this.val());
+			}, 100);
+		}
 	});
 
-	playbackRate.on('keypress', function () {
-		var $this = this;
+	playbackRate.on('keypress', function (e) {
+		e.preventDefault();
+	}).on('mousewheel', function (e) {
+		
+		var $this = $(this),
+			val = Math.round($this.val() * 100) / 100;
+			
+
+		if ((e.deltaY > 0) && (val < 1)) {
+			val = Math.round((val + 0.1) * 100) / 100;
+
+			$this.val(val);
+			
+			setTimeout(function() {
+				bundle.loop = val;
+			}, 100);	
+			
+		} else if ((e.deltaY < 0) && (val > 0.1)) {
+			val = Math.round((val - 0.1) * 100) / 100;
+			
+			$this.val(val);
+			
+			setTimeout(function() {
+				bundle.loop = val;
+			}, 100);
+		}
+
+		
 		setTimeout(function() {
-			bundle.playbackRate = parseFloat($($this).val());
+			bundle.playbackRate = parseFloat($this.val());
 		}, 100);
 	})
 	
