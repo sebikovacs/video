@@ -10,7 +10,7 @@
 <body>
 	<video id="demo" src="salsa.mp4" controls defaultMuted></video>
 	<div>
-		<button onclick="play()">Play the Audio</button>
+		<button onclick="window.play()">Play the Audio</button>
 		<button onclick="document.getElementById('demo').pause()">Pause the Audio</button>
 		<button onclick="document.getElementById('demo').volume+=0.1">Increase Volume</button>
 		<button onclick="document.getElementById('demo').volume-=0.1">Decrease Volume</button>
@@ -31,6 +31,11 @@
 
 		<label for="">Loop</label>
 		<input type="text" id="loop">
+		<button onclick="setLoop()">Set</button>
+		<br>
+
+		<label for="">Playback Rate</label>
+		<input type="text" id="playbackRate">
 		<button onclick="setLoop()">Set</button>
 	</div>
 	<div class="range">

@@ -1,43 +1,65 @@
 $(document).ready(function () {
-	var vid = $('#demo')[0];
-	var arr = [];
-
-	window.increasePlaybackRate = function () {
-		vid.playbackRate = vid.playbackRate + 0.1;
-	}
-
-	window.decreasePlaybackRate = function () {
-		vid.playbackRate = vid.playbackRate - 0.1;
-	}
-
-	//start video at this certain point and play it until the end time
-	//loop through it as many times as specified
-
+	var vid = $('#demo')[0],
+		isDownLeft = false;
+		isDownRight = false,
+		times = [],
+		start = $('#start'),
+		end = $('#end'),
+		loop = $('#loop'),
+		playbackRate = $('#playbackRate'),
+		bundle = {
+			start: 0,
+			end: 0,
+			loop: 0,
+			playbackRate: 1
+		};
+	
 	window.play = function () {
+		vid.currentTime = bundle.start;
+		vid.playbackRate = 0.8;
+		vid.playbackRate = bundle.playbackRate;
+		bundle.loop = loop.val() - 1;
 		vid.play();
 	}
 
-	
-
-	var isDownLeft = false;
-	var isDownRight = false;
-	var times = [];
-
 	$(vid).on('seeking', function () {
 		
-		var start = $('#start'),
-			end = $('#end'),
-			loop = $('#loop'),
-			time = this.currentTime;
-		
+		var time = this.currentTime;
+			
 		if (isDownLeft) {
 			start.val(time);
+			bundle.start = time; 
 		} else if (isDownRight) {
 			end.val(time);
+			bundle.end = time;
 		}
 		
+	});
+
+	$(vid).on('timeupdate', function(e){
+		if (!isDownLeft && !isDownRight && Math.floor(vid.currentTime) == Math.floor(bundle.end) && (bundle.loop > 0)) {
+			
+			vid.currentTime = bundle.start;
+			
+			bundle.loop = bundle.loop - 1;
+		}
+	});
+
+
+	loop.on('keypress', function () {
+		var $this = this;
+		setTimeout(function() {
+			bundle.loop = parseInt($($this).val());
+
+		}, 100);
+	});
+
+	playbackRate.on('keypress', function () {
+		var $this = this;
+		setTimeout(function() {
+			bundle.playbackRate = parseFloat($($this).val());
+		}, 100);
 	})
-	
 	
 	var updateStartPosition = function (e) {
 		var leftCursor = $('.cursor-left');
@@ -73,7 +95,6 @@ $(document).ready(function () {
 			rightCursor.css('left', (left + 2) + 'px');
 		}
 	}
-
 
 	$(document).on('mousedown', '.cursor-inner-left', function () { isDownLeft = true;})
 		.on('mouseup', '.cursor-inner-left', function () { isDownLeft = false;})
