@@ -5,42 +5,34 @@
 	<title>Video test</title>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="js/app.js"></script>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<video id="demo" src="salsa.mp4" controls defaultMuted></video>
-	<div>
-		<button onclick="window.play()">Play the Audio</button>
-		<button onclick="document.getElementById('demo').pause()">Pause the Audio</button>
-		<button onclick="document.getElementById('demo').volume+=0.1">Increase Volume</button>
-		<button onclick="document.getElementById('demo').volume-=0.1">Decrease Volume</button>
-		<button onclick="increasePlaybackRate()">Increase Playback Rate</button>
-		<button onclick="decreasePlaybackRate()">Decrease Playback Rate</button>
-	</div>
-	<div>
-		<label for="">Start</label>
-		<input type="text" name="" id="start">
-		<button onclick="setStart()">Set</button>
-		<br>
+	<div class="content clearfix">
+		<div class="video">
+			<video id="demo" src="salsa.mp4" controls></video>		
+		</div>
 
+		<div class="video-controls">
+			<a href="" id="play"><i class="glyphicon glyphicon-play"></i></a>
+			<a href="" id="pause" class="hide"><i class="glyphicon glyphicon-pause"></i></a>
 
-		<label for="">End</label>
-		<input type="text" name="" id="end">
-		<button onclick="setEnd()">Set</button>
-		<br>
+			<div class="range">
+				<div class="cursor-left"><div class="cursor-inner-left"></div></div>
+				<div class="cursor-right"><div class="cursor-inner-right"></div></div>
+			</div>
 
-		<label for="">Loop</label>
-		<input type="text" id="loop">
-		<button onclick="setLoop()">Set</button>
-		<br>
+			<label for="">Loop</label>
+			<input type="text" id="loop">
+			<button onclick="setLoop()">Set</button>
+			<br>
 
-		<label for="">Playback Rate</label>
-		<input type="text" id="playbackRate">
-		<button onclick="setLoop()">Set</button>
-	</div>
-	<div class="range">
-		<div class="cursor-left"><div class="cursor-inner-left"></div></div>
-		<div class="cursor-right"><div class="cursor-inner-right"></div></div>
+			<label for="">Playback Rate</label>
+			<input type="text" id="playbackRate">
+			<button onclick="setLoop()">Set</button>
+			<br>
+		</div>
 	</div>
 </body>
 </html>

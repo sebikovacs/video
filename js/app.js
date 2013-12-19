@@ -6,6 +6,8 @@ $(document).ready(function () {
 		start = $('#start'),
 		end = $('#end'),
 		loop = $('#loop'),
+		playButton = $('#play'),
+		pauseButton = $('#pause'),
 		playbackRate = $('#playbackRate'),
 		bundle = {
 			start: 0,
@@ -14,13 +16,29 @@ $(document).ready(function () {
 			playbackRate: 1
 		};
 	
-	window.play = function () {
+	playButton.on('click', function (e) {
+		$(this).addClass('hide');
+		pauseButton.removeClass('hide');
+
+		e.preventDefault();
+
 		vid.currentTime = bundle.start;
-		vid.playbackRate = 0.8;
+		
 		vid.playbackRate = bundle.playbackRate;
+		
 		bundle.loop = loop.val() - 1;
+		
 		vid.play();
-	}
+	});
+
+	pauseButton.on('click', function (e) {
+		$(this).addClass('hide');
+		playButton.removeClass('hide');
+
+		e.preventDefault();
+		
+		vid.pause();
+	})
 
 	$(vid).on('seeking', function () {
 		
