@@ -9,6 +9,8 @@ $(document).ready(function () {
 		playButton = $('#play'),
 		pauseButton = $('#pause'),
 		playbackRate = $('#playbackRate'),
+		startIndicator = $('.time-start'),
+		endIndicator = $('.time-end'),
 		bundle = {
 			start: 0,
 			end: 0,
@@ -16,6 +18,9 @@ $(document).ready(function () {
 			playbackRate: 1
 		};
 	
+	startIndicator.html(bundle.start);
+	endIndicator.html(bundle.end)
+
 	playButton.on('click', function (e) {
 		$(this).addClass('hide');
 		pauseButton.removeClass('hide');
