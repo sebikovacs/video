@@ -19,7 +19,7 @@ $(document).ready(function () {
 		};
 	
 	startIndicator.html(bundle.start);
-	endIndicator.html(bundle.end)
+	endIndicator.html(bundle.end);
 
 	playButton.on('click', function (e) {
 		$(this).addClass('hide');
@@ -51,10 +51,12 @@ $(document).ready(function () {
 			
 		if (isDownLeft) {
 			start.val(time);
-			bundle.start = time; 
+			bundle.start = time;
+			startIndicator.html(parseInt(bundle.start));
 		} else if (isDownRight) {
 			end.val(time);
 			bundle.end = time;
+			endIndicator.html(parseInt(bundle.end));
 		}
 		
 	});
