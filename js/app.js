@@ -16,10 +16,12 @@ $(document).ready(function () {
 			end: 0,
 			loop: 0,
 			playbackRate: 1
-		};
+		},
+		playing = false,
+		paused = true;
 	
 	startIndicator.html(bundle.start);
-	endIndicator.html(bundle.end)
+	endIndicator.html(bundle.end);
 
 	playButton.on('click', function (e) {
 		$(this).addClass('hide');
@@ -44,17 +46,35 @@ $(document).ready(function () {
 		
 		vid.pause();
 	})
+	
+	$(vid).on('pause', function () {
+		paused = false;
+	}).on('play', function () {
+		playing = true;
+	});
 
 	$(vid).on('seeking', function () {
 		
 		var time = this.currentTime;
-			
+console.log(playing)
+		if (playing) {
+
+			vid.pause();
+			playing = false;
+
+			pauseButton.addClass('hide');
+			playButton.removeClass('hide');
+
+		}
+
 		if (isDownLeft) {
 			start.val(time);
-			bundle.start = time; 
+			bundle.start = time;
+			startIndicator.html(parseInt(bundle.start));
 		} else if (isDownRight) {
 			end.val(time);
 			bundle.end = time;
+			endIndicator.html(parseInt(bundle.end));
 		}
 		
 	});
