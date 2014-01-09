@@ -47,7 +47,7 @@ a#play,
 a#pause{
 	color: #000;
 	font-size: 64px;
-	border: 1px solid #ccc;
+	border: 6px solid #000;
 	background: #fff;
 	display:block;
 	width: 120px;
