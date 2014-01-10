@@ -87,7 +87,6 @@ $(document).ready(function () {
 		}
 	});
 
-
 	loop.on('keypress', function (e) {
 		e.preventDefault();
 	}).on('mousewheel', function (e) {
