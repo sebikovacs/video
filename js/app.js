@@ -56,8 +56,7 @@ $(document).ready(function () {
 	$(vid).on('seeking', function () {
 		
 		var time = this.currentTime;
-console.log(playing)
-		if (playing) {
+		if ((isDownLeft || isDownRight) && playing) {
 
 			vid.pause();
 			playing = false;
