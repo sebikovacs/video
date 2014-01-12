@@ -86,30 +86,46 @@ $(document).ready(function () {
 			bundle.loop = bundle.loop - 1;
 		}
 	});
+	var incrementLoop = function (direction, val, el) {
+		
+		if (!val) {
+			el.val(1);
+			val = 1;
+		}
+
+		if (direction > 0) {
+			el.val(val + 1);
+			setTimeout(function() {
+				bundle.loop = parseInt(el.val());
+			}, 100);
+		} else if ((direction < 0) && (val > 1)) {
+			el.val(val - 1);
+			setTimeout(function() {
+				bundle.loop = parseInt(el.val());
+			}, 100);
+		}
+	}
 
 	loop.on('keypress', function (e) {
 		e.preventDefault();
+	}).on('keydown', function (e) {
+		var direction = 0,
+			val = parseInt($(this).val()),
+			$this = $(this);
+
+		if (e.which == 38){
+			direction = 1;
+		} else if (direction = 40){
+			direction = -1;
+		}
+
+		incrementLoop(direction, val, $this);
+
 	}).on('mousewheel', function (e) {
 		var val = parseInt($(this).val()),
 			$this = $(this);
 
-		if (!val) {
-			$this.val(1);
-			val = 1;
-		}
-		
-
-		if (e.deltaY > 0) {
-			$this.val(val + 1);
-			setTimeout(function() {
-				bundle.loop = parseInt($this.val());
-			}, 100);
-		} else if (e.deltaY < 0 && val > 1) {
-			$this.val(val - 1);
-			setTimeout(function() {
-				bundle.loop = parseInt($this.val());
-			}, 100);
-		}
+		incrementLoop(e.deltaY, val, $this);
 	});
 
 	playbackRate.on('keypress', function (e) {

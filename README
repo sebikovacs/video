@@ -1,4 +1,5 @@
 #TODO
+- find a way around laptops that have no scrolling
 - show times that are stored for looping
 - loop buttons to move when user starts playing video but not if user has started seeking loop sequence	
 - put it on angular
