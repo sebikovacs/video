@@ -16,7 +16,9 @@ $(document).ready(function () {
 			end: 0,
 			loop: 0,
 			playbackRate: 1
-		};
+		},
+		playing = false,
+		paused = true;
 	
 	startIndicator.html(bundle.start);
 	endIndicator.html(bundle.end);
@@ -44,11 +46,26 @@ $(document).ready(function () {
 		
 		vid.pause();
 	})
+	
+	$(vid).on('pause', function () {
+		paused = false;
+	}).on('play', function () {
+		playing = true;
+	});
 
 	$(vid).on('seeking', function () {
 		
 		var time = this.currentTime;
-			
+		if ((isDownLeft || isDownRight) && playing) {
+
+			vid.pause();
+			playing = false;
+
+			pauseButton.addClass('hide');
+			playButton.removeClass('hide');
+
+		}
+
 		if (isDownLeft) {
 			start.val(time);
 			bundle.start = time;
@@ -69,7 +86,6 @@ $(document).ready(function () {
 			bundle.loop = bundle.loop - 1;
 		}
 	});
-
 
 	loop.on('keypress', function (e) {
 		e.preventDefault();

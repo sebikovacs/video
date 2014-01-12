@@ -1,5 +1,6 @@
 #TODO
 - show times that are stored for looping
 - loop buttons to move when user starts playing video but not if user has started seeking loop sequence	
-- when user starts seeking automatically pause video
-- pause video when clicking on video image
+- put it on angular
+
+
