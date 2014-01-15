@@ -86,7 +86,8 @@ $(document).ready(function () {
 			bundle.loop = bundle.loop - 1;
 		}
 	});
-	var incrementLoop = function (direction, val, el) {
+
+	var setLoopValue = function (direction, val, el) {
 		
 		if (!val) {
 			el.val(1);
@@ -119,17 +120,31 @@ $(document).ready(function () {
 			direction = -1;
 		}
 
-		incrementLoop(direction, val, $this);
+		setLoopValue(direction, val, $this);
 
 	}).on('mousewheel', function (e) {
 		var val = parseInt($(this).val()),
 			$this = $(this);
 
-		incrementLoop(e.deltaY, val, $this);
+		setLoopValue(e.deltaY, val, $this);
 	});
+
+
 
 	playbackRate.on('keypress', function (e) {
 		e.preventDefault();
+	}).on('keydown', function (e) {
+		var direction = 0,
+			val = Math.round($this.val() * 100) / 100,
+			$this = $(this);
+
+		if (e.which == 38){
+			direction = 1;
+		} else if (direction = 40){
+			direction = -1;
+		}
+
+
 	}).on('mousewheel', function (e) {
 		
 		var $this = $(this),
