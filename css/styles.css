@@ -2,6 +2,26 @@ body {
 /* 	background: url(../img/brushed.png); */
 }
 
+#droparea {
+	width: 200px;
+	height: 200px;
+	border: 5px dotted #ccc;
+	margin: 0 auto 20px;
+	text-align: center;
+	padding-top: 70px;
+	color: #ccc;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+#droparea:after {
+	content: 'Drop area'
+}
+
+#droparea.hover {
+	border-color: cyan;
+}
+
 .content {
 	max-width: 1280px;
 	margin: 0 auto;
