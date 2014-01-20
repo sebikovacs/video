@@ -2,6 +2,51 @@ body {
 /* 	background: url(../img/brushed.png); */
 }
 
+.spinner {
+	width: 120px;
+	height: 120px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -60px;
+	background-color: #888;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3) inset;
+border-radius: 50%;
+}
+.spinner:after {
+	content: '';
+	position: absolute;
+	left: 30px;
+	top: 15px;
+	background-color: #fff;
+	height: 24px;
+	width: 24px;
+	animation: spin 1s linear infinite;
+	border-radius: 50%;
+	transform-origin: 30px 45px;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.droparea-wrap {
+
+}
+
+.droparea-wrap .btn {
+	display: block;
+	width: 160px;
+	margin: 0 auto 20px;
+}
+
+.droparea-wrap .progress {
+	width: 40%;
+	margin: 0 auto 20px;
+}
+
 #droparea {
 	width: 200px;
 	height: 200px;
