@@ -50,7 +50,9 @@ $(document).ready(function () {
 				progress[0].style.display = 'none';
 				el.style.display = 'none';
 				$('#demo').attr('src', e.target.result);
-				console.log('started')
+				
+				//show video and video controls
+				$('.video, .video-controls').addClass('show');
 			}, 1000);
 			
 		}

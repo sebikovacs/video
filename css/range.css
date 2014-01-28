@@ -1,0 +1,52 @@
+body {
+    padding: 1px 0 0;
+}
+.range-holder {
+    margin: 100px 0 0 200px;
+    width: 400px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+.range-track {
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    margin-top: -5px;
+    top: 50%;
+    left: 0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.range-selection{
+    height: 10px;
+    background: #ccc;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+}
+.range-handle {
+    width: 20px;
+    height: 20px;
+    background: #0e90d2;
+    opacity: 0.5;
+    border-radius: 30px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+    margin-top: -10px;
+    margin-left: -10px;
+    top: 50%;
+}
+.range-handle:hover {
+    cursor: pointer;
+}
+
+.tooltip {
+    top: -40px;
+}
+
+body {
+    height: 600px;
+}
