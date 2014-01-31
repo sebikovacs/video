@@ -51,8 +51,6 @@ $(document).ready(function () {
 				el.style.display = 'none';
 				$('#demo').attr('src', e.target.result);
 				
-				//show video and video controls
-				$('.video, .video-controls').addClass('show');
 			}, 1000);
 			
 		}

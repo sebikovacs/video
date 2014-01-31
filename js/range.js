@@ -10,6 +10,7 @@
 			time2 = range.find('.time2'),
 			handle1 = range.find('.range-handle:first'),
 			handle2 = range.find('.range-handle:last'),
+			video = options.video,
 			isDragged = false,
 			draggedRange = 0, 
 			values = [0,0], 
@@ -19,7 +20,11 @@
 		
 		time1.html(values[0]);
 		time2.html(values[1]);
-
+		var getDraggedRange = function (draggedRange) {
+			var inc = rangeTrack.width() / duration;
+			var t = parseInt(draggedRange / inc);
+			return t;
+		}
 		var mousemove = function (e) {
 				
 			if (isDragged) {
@@ -32,6 +37,8 @@
 					whichHandle = 0;
 				}
 				values[whichHandle] = draggedRange;
+
+				video[0].currentTime = getDraggedRange(draggedRange);
 				
 				buildLayout();
 			}
@@ -51,8 +58,9 @@
 			var diff2 = Math.abs(draggedRange - values[1]);
 			whichHandle = diff1 < diff2 ? 0 : 1;
 			
-			
 			values[whichHandle] = draggedRange;
+			
+			video[0].currentTime = getDraggedRange(draggedRange);
 			
 			buildLayout();
 
