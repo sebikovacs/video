@@ -5,10 +5,17 @@
 	<title>Video test</title>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery.mousewheel.js"></script>
-	<script src="js/app.js"></script>
+	<script src="js/range.js"></script>
 	<script src="js/dragdrop.js"></script>
+	<script src="js/videoPlayer.js"></script>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/range.css">
+	<script>
+		$(document).ready(function () {
+			$('.range-holder').rangeSelector();
+		});
+	</script>
 </head>
 <body>
 	<div class="content clearfix">
@@ -27,7 +34,7 @@
 		
 		
 		<div class="video">
-			<video id="demo" src="" controls width="600px"></video>		
+			<video id="demo" src="media/bird.mp4" controls width="600px"></video>		
 		</div>
 		
 
@@ -46,6 +53,14 @@
 			</div>
 
 			<div class="range-holder">
+				<div class="range-track"></div>
+				<div class="range-selection"></div>
+				<div class="range-handle left-handle"></div>
+				<div class="range-handle right-handle"></div>
+				<span class="badge"><span class="time1">20</span> - <span class="time2">30</span></span>
+			</div>
+
+			<!-- <div class="range-holder">
 				<div class="range">
 					<div class="cursor-left"><div class="cursor-inner-left"></div></div>
 					<div class="cursor-right"><div class="cursor-inner-right"></div></div>
@@ -55,7 +70,7 @@
 					<span class="time-end"></span>
 					<a href="" class="clear">clear</a>
 				</div>
-			</div>
+			</div> -->
 
 		</div>
 	</div>

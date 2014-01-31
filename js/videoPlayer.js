@@ -176,50 +176,50 @@ $(document).ready(function () {
 		}, 100);
 	})
 	
-	var updateStartPosition = function (e) {
-		var leftCursor = $('.cursor-left');
-		var rightCursor = $('.cursor-right');
-		var range = $('.range');
-		var pixelCount = vid.duration / $('.range').width();
+	// var updateStartPosition = function (e) {
+	// 	var leftCursor = $('.cursor-left');
+	// 	var rightCursor = $('.cursor-right');
+	// 	var range = $('.range');
+	// 	var pixelCount = vid.duration / $('.range').width();
 
-		var left = (e.pageX - range.offset().left) - leftCursor.width();
+	// 	var left = (e.pageX - range.offset().left) - leftCursor.width();
 
-		if ((isDownLeft && left >= 0) && (isDownLeft && left <= 400)) {
-			var time = left * pixelCount;
-			vid.currentTime = time;
+	// 	if ((isDownLeft && left >= 0) && (isDownLeft && left <= 400)) {
+	// 		var time = left * pixelCount;
+	// 		vid.currentTime = time;
 
-			leftCursor.css('left', left + 'px');
-			rightCursor.css('left', (left + 1) + 'px');
-		}
-	};
+	// 		leftCursor.css('left', left + 'px');
+	// 		rightCursor.css('left', (left + 1) + 'px');
+	// 	}
+	// };
 
-	var updateEndPosition = function (e) {
+	// var updateEndPosition = function (e) {
 
-		var leftCursor = $('.cursor-left');
-		var rightCursor = $('.cursor-right');
-		var range = $('.range');
-		var pixelCount = vid.duration / $('.range').width();
+	// 	var leftCursor = $('.cursor-left');
+	// 	var rightCursor = $('.cursor-right');
+	// 	var range = $('.range');
+	// 	var pixelCount = vid.duration / $('.range').width();
 
-		var left = (e.pageX - range.offset().left) - leftCursor.width();
+	// 	var left = (e.pageX - range.offset().left) - leftCursor.width();
 
-		if ((isDownRight && left >= 0) && (isDownRight && left <= 400)) {
+	// 	if ((isDownRight && left >= 0) && (isDownRight && left <= 400)) {
 			
-			var time = left * pixelCount;
-			vid.currentTime = time;
+	// 		var time = left * pixelCount;
+	// 		vid.currentTime = time;
 
-			rightCursor.css('left', (left + 2) + 'px');
-		}
-	}
+	// 		rightCursor.css('left', (left + 2) + 'px');
+	// 	}
+	// }
 
-	$(document).on('mousedown', '.cursor-inner-left', function () { isDownLeft = true;})
-		.on('mouseup', '.cursor-inner-left', function () { isDownLeft = false;})
-		.on('mousemove','.cursor-inner-left', updateStartPosition)
-		.on('mouseup', function () { isDownLeft = false;})
-		.on('mousemove', updateStartPosition);
+	// $(document).on('mousedown', '.cursor-inner-left', function () { isDownLeft = true;})
+	// 	.on('mouseup', '.cursor-inner-left', function () { isDownLeft = false;})
+	// 	.on('mousemove','.cursor-inner-left', updateStartPosition)
+	// 	.on('mouseup', function () { isDownLeft = false;})
+	// 	.on('mousemove', updateStartPosition);
 
-	$(document).on('mousedown', '.cursor-inner-right', function () { isDownRight = true;})
-		.on('mouseup', '.cursor-inner-right', function () { isDownRight = false;})
-		.on('mousemove','.cursor-inner-right', updateEndPosition)
-		.on('mouseup', function () { isDownRight = false;})
-		.on('mousemove', updateEndPosition);
+	// $(document).on('mousedown', '.cursor-inner-right', function () { isDownRight = true;})
+	// 	.on('mouseup', '.cursor-inner-right', function () { isDownRight = false;})
+	// 	.on('mousemove','.cursor-inner-right', updateEndPosition)
+	// 	.on('mouseup', function () { isDownRight = false;})
+	// 	.on('mousemove', updateEndPosition);
 });
