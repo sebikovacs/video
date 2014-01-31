@@ -3,12 +3,18 @@ $(document).ready(function () {
 		rangeTrack = $('.range-track'),
 		rangeSelection = $('.range-selection'),
 		rangeSelectionWidth = rangeSelection.width(),
+		time1 = range.find('.time1'),
+		time2 = range.find('.time2'),
 		handle1 = range.find('.range-handle:first'),
 		handle2 = range.find('.range-handle:last'),
 		isDragged = false,
 		draggedRange = 0, 
 		values = [0,0], 
 		whichHandle;
+
+	
+	time1.html(values[0]);
+	time2.html(values[1]);
 
 	var mousemove = function (e) {
 			
@@ -22,7 +28,7 @@ $(document).ready(function () {
 				whichHandle = 0;
 			}
 			values[whichHandle] = draggedRange;
-
+			console.log(values)
 			buildLayout();
 		}
 		
@@ -66,10 +72,19 @@ $(document).ready(function () {
 
 		rangeSelection[0].style.left = values[0] + 'px';
 		rangeSelection.width(values[1] - values[0]);
+
+		//update badge
+		var duration = 3*60 + 11;
+		var inc = rangeTrack.width() / duration;
+
+		time1.html( parseInt(values[0] / inc));
+		time2.html( parseInt(values[1] / inc));
+
 	};
 
 	range.on({
 		mousedown: mousedown,
 		mouseup: mouseup
-	})
+	});
+
 });

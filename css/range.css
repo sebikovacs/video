@@ -43,8 +43,9 @@ body {
     cursor: pointer;
 }
 
-.tooltip {
-    top: -40px;
+.badge {
+    position: absolute;
+    right: -100px;
 }
 
 body {
