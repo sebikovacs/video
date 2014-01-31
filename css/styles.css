@@ -83,14 +83,22 @@ border-radius: 50%;
 
 .input-wrap {
 	text-align: center;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	width: 60%;
-	padding: 20px;
+	padding: 40px 0;
+	position: absolute;
+	top: -229px;
+	background: rgba(0,0,0, .5);
+	width: 420px;
+	left: 50%;
+	margin-left: -210px;
+	display: none;
 }
 
 .input-wrap i {
 	display: inline-block;
 	margin: 0 15px 0 0;
+	color: #FFF;
 }
 
 input {
@@ -111,7 +119,8 @@ input {
 }
 
 .video {
-	float: left;
+	margin: 0 auto;
+	width: 600px;
 }
 
 .video video {
@@ -119,22 +128,24 @@ input {
 }
 
 .video-controls {
-	float: right;
-	width: 560px;
-	padding: 40px 20px 0;
+	width: 598px;
+	padding: 10px 0 10px 10px;
+	margin: 0 auto;
+	position: relative;
+	top: -47px;
+	background: rgba(0,0,9, .5);
 }
 
 a#play,
 a#pause{
-	color: #000;
-	font-size: 64px;
-	border: 6px solid #000;
-	background: #fff;
+	color: #FFF;
+	font-size: 20px;
+	/* background: #fff; */
 	display:block;
-	width: 120px;
-	height: 120px;
+	width: 14px;
 	border-radius: 120px;
-	margin: 0 auto;
+	float: left;
+	margin: -1px 20px 0 0;
 }
 a#play:hover,
 a#pause:hover {
@@ -144,7 +155,6 @@ a#pause:hover {
 a#play i,
 a#pause i {
 	display: block;
-	margin: 22px auto 0;
 }
 
 .range-holder {
@@ -154,12 +164,9 @@ a#pause i {
 	width: 400px;
 	border: 1px solid #ccc;
 	height: 5px;
-	/* box-shadow: rgba(0,0,0,.5) 0 1px 2px inset ; */
-	/* border-radius: 2px; */
 	position: relative;
 	margin: 0px auto;
-	display: inline-block
-;
+	display: inline-block;
 	background: #ccc;
 }
 .cursor-left {

@@ -11,6 +11,7 @@ $(document).ready(function () {
 		playbackRate = $('#playbackRate'),
 		startIndicator = $('.time-start'),
 		endIndicator = $('.time-end'),
+		inputWrap = $('.input-wrap'),
 		bundle = {
 			start: 0,
 			end: 0,
@@ -56,6 +57,22 @@ $(document).ready(function () {
 		paused = false;
 	}).on('play', function () {
 		playing = true;
+	}).on('click', function() {
+		if (!playing) {
+			vid.play();
+			playing = true;
+		} else {
+			vid.pause();
+			playing = false;
+		}
+	}).on('mouseenter', function () {
+		inputWrap.show();
+	}).on('mouseleave', function () {
+		inputWrap.hide();
+	});
+
+	inputWrap.on('mouseenter', function () {
+		$(this).show();
 	});
 
 	$(vid).on('seeking', function () {

@@ -2,7 +2,6 @@ body {
     padding: 1px 0 0;
 }
 .range-holder {
-    margin: 100px 0 0 200px;
     width: 400px;
     height: 20px;
     display: inline-block;
@@ -45,7 +44,7 @@ body {
 
 .badge {
     position: absolute;
-    right: -100px;
+    left: 406px;
 }
 
 body {
