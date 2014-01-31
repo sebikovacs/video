@@ -13,7 +13,8 @@
 			isDragged = false,
 			draggedRange = 0, 
 			values = [0,0], 
-			whichHandle;
+			whichHandle,
+			duration = options.duration || 0;
 
 		
 		time1.html(values[0]);
@@ -77,15 +78,16 @@
 			rangeSelection.width(values[1] - values[0]);
 
 			//update badge
-			var duration = 3*60 + 11;
 			var inc = rangeTrack.width() / duration;
+			var t1 = parseInt(values[0] / inc);
+			var t2 = parseInt(values[1] / inc);
 
-			time1.html( parseInt(values[0] / inc));
-			time2.html( parseInt(values[1] / inc));
+			time1.html(t1);
+			time2.html(t2);
 
 			var rangeValues = {
-				t1: parseInt(values[0] / inc),
-				t2: parseInt(values[1] / inc)
+				t1: t1,
+				t2: t2
 			}
 
 			window.rangeValues = rangeValues;

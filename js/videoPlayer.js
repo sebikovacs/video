@@ -18,19 +18,24 @@ $(document).ready(function () {
 			playbackRate: 1
 		},
 		playing = false,
-		paused = true;
+		paused = true,
+		window.rangeValues = {
+			t1: 0,
+			t2: 0
+		};
 	
 	startIndicator.html(bundle.start);
 	endIndicator.html(bundle.end);
 
 	playButton.on('click', function (e) {
+		
 		$(this).addClass('hide');
 		pauseButton.removeClass('hide');
 
 		e.preventDefault();
 
-		vid.currentTime = bundle.start;
-		
+		vid.currentTime = window.rangeValues.t1;
+
 		vid.playbackRate = bundle.playbackRate;
 		
 		bundle.loop = loop.val() - 1;
@@ -79,11 +84,16 @@ $(document).ready(function () {
 	});
 
 	$(vid).on('timeupdate', function(e){
-		if (!isDownLeft && !isDownRight && Math.floor(vid.currentTime) == Math.floor(bundle.end) && (bundle.loop > 0)) {
+		
+		if (Math.floor(vid.currentTime) == Math.floor(window.rangeValues.t2)) {
 			
-			vid.currentTime = bundle.start;
+			vid.currentTime = window.rangeValues.t1;
 			
-			bundle.loop = bundle.loop - 1;
+			if (bundle.loop > 0){
+				bundle.loop = bundle.loop - 1;
+			} else {
+				vid.pause();
+			}
 		}
 	});
 
