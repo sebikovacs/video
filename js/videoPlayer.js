@@ -9,6 +9,8 @@ $(document).ready(function () {
 		playbackRate = $('#playbackRate'),
 		startIndicator = $('.time-start'),
 		endIndicator = $('.time-end'),
+		min = $('.min'),
+		sec = $('.sec'),
 		inputWrap = $('.input-wrap'),
 		bundle = {
 			start: 0,
@@ -25,6 +27,17 @@ $(document).ready(function () {
 	
 	startIndicator.html(bundle.start);
 	endIndicator.html(bundle.end);
+
+
+	var updateTime = function () {
+		var ss = parseInt(vid.currentTime);
+		var mm = 0;
+
+		ss = ss < 0 ? '0' + ss : ss;
+
+		sec.html(ss);
+
+	};
 
 	playButton.on('click', function (e) {
 		
@@ -109,6 +122,10 @@ $(document).ready(function () {
 			} else {
 				vid.pause();
 			}
+		}
+
+		if (playing) {
+			updateTime();
 		}
 	});
 

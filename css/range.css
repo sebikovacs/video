@@ -47,6 +47,11 @@ body {
     left: 406px;
 }
 
+#time {
+    background: #5bc0de;
+    left: 464px;
+}
+
 body {
     height: 600px;
 }
