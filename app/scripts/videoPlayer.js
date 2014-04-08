@@ -76,14 +76,6 @@ $(document).ready(function () {
 			vid.pause();
 			playing = false;
 		}
-	}).on('mouseenter', function () {
-		inputWrap.show();
-	}).on('mouseleave', function () {
-		inputWrap.hide();
-	});
-
-	inputWrap.on('mouseenter', function () {
-		$(this).show();
 	});
 
 	$(vid).on('seeking', function () {
