@@ -40,7 +40,9 @@ $(document).ready(function () {
 	};
 
 	playButton.on('click', function (e) {
-		
+		  
+    console.log(bundle);
+
 		$(this).addClass('hide');
 		pauseButton.removeClass('hide');
 
@@ -50,7 +52,7 @@ $(document).ready(function () {
 
 		vid.playbackRate = bundle.playbackRate;
 		
-		bundle.loop = loop.val() - 1;
+		bundle.loop = parseInt(loop.html());
 		
 		vid.play();
 	});
@@ -164,9 +166,8 @@ $(document).ready(function () {
 		setLoopValue(e.deltaY, val, $this);
 	});
 
-
-
-	playbackRate.on('keypress', function (e) {
+	
+  playbackRate.on('keypress', function (e) {
 		e.preventDefault();
 	}).on('keydown', function (e) {
 		var direction = 0,
@@ -180,34 +181,31 @@ $(document).ready(function () {
 		}
 	}).on('mousewheel', function (e) {
 		
-		var $this = $(this),
-			val = Math.round($this.html()) / 100;
-			
+		var $this = $(this);
+    var val = parseInt($this.html())/100;
 
-		if ((e.deltaY > 0) && (val < 1)) {
+    //value of playbackrate is between 0 and 1, while value displayed to user is 0 to 100%
+			
+    if ((e.deltaY > 0) && (val < 1)) {
 			val = Math.round((val + 0.1) * 100) / 100;
 
       $this.html(val * 100);
 			
 			setTimeout(function() {
-				bundle.loop = val;
+				bundle.playbackRate = val;
 			}, 100);	
 			
 		} else if ((e.deltaY < 0) && (val > 0.1)) {
 
+			val = (Math.round((val - 0.1) * 100)) / 100 ;
 
-			val = Math.round((val - 0.1) * 100) / 100;
-
-			$this.html(val);
+			$this.html(val * 100);
 			
 			setTimeout(function() {
-				bundle.loop = val;
+
+				bundle.playbackRate = val;
+        
 			}, 100);
 		}
-
-		
-		setTimeout(function() {
-			bundle.playbackRate = parseFloat($this.val());
-		}, 100);
 	});
 });
