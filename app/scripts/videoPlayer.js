@@ -3,10 +3,10 @@ $(document).ready(function () {
 		isDownLeft = false;
 		isDownRight = false,
 		end = $('#end'),
-		loop = $('#loop'),
+		loop = $('.loop-val'),
 		playButton = $('#play'),
 		pauseButton = $('#pause'),
-		playbackRate = $('#playbackRate'),
+		playbackRate = $('.speed-val'),
 		startIndicator = $('.time-start'),
 		endIndicator = $('.time-end'),
 		min = $('.min'),
@@ -124,19 +124,19 @@ $(document).ready(function () {
 	var setLoopValue = function (direction, val, el) {
 		
 		if (!val) {
-			el.val(1);
+			el.html(1);
 			val = 1;
 		}
 
 		if (direction > 0) {
-			el.val(val + 1);
+			el.html(val + 1);
 			setTimeout(function() {
-				bundle.loop = parseInt(el.val());
+				bundle.loop = parseInt(el.html());
 			}, 100);
 		} else if ((direction < 0) && (val > 1)) {
-			el.val(val - 1);
+			el.html(val - 1);
 			setTimeout(function() {
-				bundle.loop = parseInt(el.val());
+				bundle.loop = parseInt(el.html());
 			}, 100);
 		}
 	}
@@ -157,7 +157,8 @@ $(document).ready(function () {
 		setLoopValue(direction, val, $this);
 
 	}).on('mousewheel', function (e) {
-		var val = parseInt($(this).val()),
+
+		var val = parseInt($(this).html()),
 			$this = $(this);
 
 		setLoopValue(e.deltaY, val, $this);
@@ -177,27 +178,27 @@ $(document).ready(function () {
 		} else if (direction = 40){
 			direction = -1;
 		}
-
-
 	}).on('mousewheel', function (e) {
 		
 		var $this = $(this),
-			val = Math.round($this.val() * 100) / 100;
+			val = Math.round($this.html()) / 100;
 			
 
 		if ((e.deltaY > 0) && (val < 1)) {
 			val = Math.round((val + 0.1) * 100) / 100;
 
-			$this.val(val);
+      $this.html(val * 100);
 			
 			setTimeout(function() {
 				bundle.loop = val;
 			}, 100);	
 			
 		} else if ((e.deltaY < 0) && (val > 0.1)) {
+
+
 			val = Math.round((val - 0.1) * 100) / 100;
-			
-			$this.val(val);
+
+			$this.html(val);
 			
 			setTimeout(function() {
 				bundle.loop = val;
