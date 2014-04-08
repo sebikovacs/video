@@ -41,14 +41,16 @@ $(document).ready(function () {
 
 	playButton.on('click', function (e) {
 		  
-    console.log(bundle);
-
-		$(this).addClass('hide');
+    $(this).addClass('hide');
 		pauseButton.removeClass('hide');
 
 		e.preventDefault();
 
 		vid.currentTime = window.rangeValues.t1;
+
+    if (window.rangeValues.t2 == 0) {
+      window.rangeValues.t2 = vid.duration;      
+    }
 
 		vid.playbackRate = bundle.playbackRate;
 		
@@ -108,11 +110,12 @@ $(document).ready(function () {
 	$(vid).on('timeupdate', function(e){
 		
 		if (Math.floor(vid.currentTime) == Math.floor(window.rangeValues.t2)) {
-			$('.feedback-loop span.loops').html(bundle.loop)
+			
 			vid.currentTime = window.rangeValues.t1;
 			
 			if (bundle.loop > 0){
 				bundle.loop = bundle.loop - 1;
+        loop.html(bundle.loop);
 			} else {
 				vid.pause();
 			}
