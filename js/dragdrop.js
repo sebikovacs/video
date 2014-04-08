@@ -3,7 +3,8 @@ $(document).ready(function () {
 		progress = $('.progress'),
 		progressBar = progress.find('.progress-bar'),
 		droparea = $('.droparea-wrap'),
-		dropareaBtn = droparea.find('.btn');
+		dropareaBtn = droparea.find('.btn'),
+    videoWrap = document.getElementsByClassName('video')[0];
 
 	var updateProgress = function (evt) {
 		if (evt.lengthComputable) {
@@ -20,10 +21,10 @@ $(document).ready(function () {
 		}
 	}
 
-	el.ondragover = function () { 
-		this.className = 'hover'; 
-		return false; 
-	};
+  el.ondragover = function () {
+    this.className = 'hover';
+    return false;
+  };
 
 	el.ondragout = function () {
 		this.className = ''; 
@@ -42,19 +43,23 @@ $(document).ready(function () {
 		
 		reader.onprogress = updateProgress;
 
+    el.style.display = 'none';
 		reader.onload = function (e) {
 			
 			progressBar[0].style.width = '100%';
 
 			setTimeout(function() {
 				progress[0].style.display = 'none';
-				el.style.display = 'none';
-				$('#demo').attr('src', e.target.result);
 				
+        $('#demo').attr('src', e.target.result).on('canplay', function () {
+          $('.video').width(this.videoWidth).height(this.videoHeight).css('display','block');
+          $('.video-controls').css('display', 'block');
+        });
+        
 			}, 1000);
 			
-		}
-		
+		};
+
 		reader.readAsDataURL(file);
 		
 	};
@@ -70,5 +75,15 @@ $(document).ready(function () {
 		fileList: window.FileList ? true : false,
 		blob: window.Blob ? true : false
 	}
-	
+
+  if ($('#demo').attr('src') != '') {
+    $('.video').css('display','block');
+    $('#demo').on('canplay', function () {
+      $('.video')
+        .width(this.videoWidth)
+        .height(this.videoHeight);
+    });
+    $('.video-controls').css('display', 'block');
+  }
+
 });

@@ -33,7 +33,7 @@ $(document).ready(function () {
 		var ss = parseInt(vid.currentTime);
 		var mm = 0;
 
-		ss = ss < 0 ? '0' + ss : ss;
+		ss = ss < 10 ? '0' + ss : ss;
 
 		sec.html(ss);
 
@@ -114,7 +114,7 @@ $(document).ready(function () {
 	$(vid).on('timeupdate', function(e){
 		
 		if (Math.floor(vid.currentTime) == Math.floor(window.rangeValues.t2)) {
-			
+			$('.feedback-loop span.loops').html(bundle.loop)
 			vid.currentTime = window.rangeValues.t1;
 			
 			if (bundle.loop > 0){
