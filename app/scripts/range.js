@@ -1,0 +1,114 @@
+(function function_name ($, window) {
+	'use strict';
+
+	$.fn.rangeSelector = function (options) {
+		var range = $(this),
+			rangeTrack = $('.range-track'),
+			rangeSelection = $('.range-selection'),
+			rangeSelectionWidth = rangeSelection.width(),
+			time1 = range.find('.time1'),
+			time2 = range.find('.time2'),
+			handle1 = range.find('.range-handle:first'),
+			handle2 = range.find('.range-handle:last'),
+			video = options.video,
+			isDragged = false,
+			draggedRange = 0, 
+			values = [0,0], 
+			whichHandle,
+			duration = options.duration || 0;
+
+		
+		time1.html(values[0]);
+		time2.html(values[1]);
+		var getDraggedRange = function (draggedRange) {
+			var inc = rangeTrack.width() / duration;
+			var t = parseInt(draggedRange / inc);
+			return t;
+		}
+		var mousemove = function (e) {
+				
+			if (isDragged) {
+				getRange(e);
+				if (whichHandle == 0 && values[1] < draggedRange) {
+					values[0] = values[1];
+					whichHandle = 1;
+				} else if (whichHandle == 1 && values[0] > draggedRange){
+					values[1] = values[0];
+					whichHandle = 0;
+				}
+				values[whichHandle] = draggedRange;
+
+				video[0].currentTime = getDraggedRange(draggedRange);
+				
+				buildLayout();
+			}
+			
+		};
+		
+		var mouseup = function () {
+			isDragged = false;
+		}
+		
+		var mousedown = function (e) {
+
+			isDragged = true;
+			getRange(e);
+			
+			var diff1 = Math.abs(draggedRange - values[0]);
+			var diff2 = Math.abs(draggedRange - values[1]);
+			whichHandle = diff1 < diff2 ? 0 : 1;
+			
+			values[whichHandle] = draggedRange;
+			
+			video[0].currentTime = getDraggedRange(draggedRange);
+			
+			buildLayout();
+
+			range.on({
+				mousemove: mousemove
+			})
+		};
+
+		var getRange = function (e) {
+			var pos = e.pageX;
+			var max = rangeTrack.offset().left + rangeTrack[0].offsetWidth;
+			var min = rangeTrack.offset().left;
+			
+			draggedRange = Math.min(Math.max(min, pos), max) - rangeTrack.offset().left;
+		};
+
+		var buildLayout = function () {
+
+			handle1[0].style.left = values[0] + 'px';
+			handle2[0].style.left = values[1] + 'px';
+
+			rangeSelection[0].style.left = values[0] + 'px';
+			rangeSelection.width(values[1] - values[0]);
+
+			//update badge
+			var inc = rangeTrack.width() / duration;
+			var t1 = parseInt(values[0] / inc);
+			var t2 = parseInt(values[1] / inc);
+
+			time1.html(t1);
+			time2.html(t2);
+
+			var rangeValues = {
+				t1: t1,
+				t2: t2
+			}
+
+			window.rangeValues = rangeValues;
+
+		};
+
+		range.on({
+			mousedown: mousedown,
+			mouseup: mouseup
+		});
+	}
+
+
+
+})(jQuery, window);
+	

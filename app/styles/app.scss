@@ -1,0 +1,24 @@
+/* El patron
+ */
+
+/* Bourbon
+ */
+@import "../bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";
+
+/* Globals
+ */
+$color1: #2854a1;
+$color2: lighten(saturate($color1, 40%), 20%);
+$white: #fff;
+$grey: #e6e6e6;
+
+/* Utils
+ */
+@import "utils";
+
+/* Main
+ */
+
+body {
+
+}
