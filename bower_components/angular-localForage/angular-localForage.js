@@ -27,7 +27,7 @@
 
 		// Setter for the storage driver
 		var setDriver = function(driver) {
-			return localforage.setDriver(driver);
+      return localforage.setDriver(driver);
 		};
 
 		this.setDriver = setDriver;
